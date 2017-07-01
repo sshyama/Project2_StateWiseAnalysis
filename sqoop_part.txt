@@ -1,0 +1,62 @@
+SQOOP to load file into database
+
+sudo service mysqld start
+mysql -u root
+
+create database final_project ;
+
+use final_project ;
+
+--TABLE for problem 1
+
+create table BPL_100
+(
+state varchar(20),
+district varchar(20),
+objective varchar(20),
+achieve varchar(20)
+);
+
+grant all on *.* to 'root'@'localhost' with grant option;
+
+
+--Table for Problem 2
+
+
+create table BPL_80
+(
+state varchar(20),
+district varchar(20),
+objective varchar(20),
+achieve varchar(20)
+);
+
+grant all on *.* to 'root'@'localhost' with grant option;
+
+FOR problem 1
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+sqoop export --fs local 
+			-jt local 
+			--connect jdbc:mysql://localhost/final_project 
+			--username 'root' -P 
+			--table 'BPL_100' 
+			--export-dir 'file:///home/acadgild/pig/BPL_100' 
+			--input-fields-terminated-by ',' 
+			-m 1 
+			--columns state,district,objective,achieve
+			
+			
+			
+			
+			
+			
+FOR problem 2
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+sqoop export --fs local 
+			--jt local 
+			--connect jdbc:mysql://localhost/final_project 
+			--username 'root' -P 	
+			--table 'BPL_80' 
+			--export-dir 'file:///home/acadgild/pig/BPL_80.txt' 
+			--input-fields-terminated-by ',' 
+			-m 1 --columns state,district,objective,achieve

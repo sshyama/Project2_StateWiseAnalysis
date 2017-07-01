@@ -1,0 +1,8 @@
+REGISTER piggybank.jar
+DEFINE XPath org.apache.pig.piggybank.evaluation.xml.XPath();
+
+A =  LOAD 'progress.xml' using org.apache.pig.piggybank.storage.XMLLoader('row') as (x:chararray);
+ 
+B = FOREACH A GENERATE XPath(x, 'row/State_Name'), XPath(x, 'row/District_Name') , XPath(x, 'row/Project_Objectives_IHHL_BPL') , XPath(x, 'row/Project_Performance-IHHL_BPL');
+dump B;
+
